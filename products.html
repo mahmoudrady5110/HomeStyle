@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منتجاتنا - HomeStyle</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <img src="images/logo.png" alt="لوجو HomeStyle" class="logo">
+        <h1>منتجات HomeStyle</h1>
+        <p>تصفح أفضل المنتجات</p>
+    </header>
+
+    <nav>
+        <a href="index.html">الرئيسية</a>
+        <a href="products.html">منتجاتنا</a>
+        <a href="tel:0123456789">اتصل بنا</a>
+        <a href="https://wa.me/201017905181" target="_blank">تواصل واتساب</a>
+    </nav>
+
+    <div class="category-buttons">
+        <button class="btn" onclick="showCategory('handmade')">أدوات هاند ميد</button>
+        <button class="btn" onclick="showCategory('home')">أدوات منزلية</button>
+    </div>
+
+    <!-- أدوات هاند ميد -->
+    <section class="products" id="handmade">
+        <div class="product">
+            <img src="images/handmade1.jpg" alt="منتج 1">
+            <h3>أدوات هاند ميد 1</h3>
+            <p>منتج يدوي مميز.</p>
+            <button class="btn" onclick="openOrderForm('أدوات هاند ميد 1')">اطلب الآن</button>
+        </div>
+
+        <div class="product">
+            <img src="images/handmade2.jpg" alt="منتج 2">
+            <h3>أدوات هاند ميد 2</h3>
+            <p>منتج يدوي بجودة عالية.</p>
+            <button class="btn" onclick="openOrderForm('أدوات هاند ميد 2')">اطلب الآن</button>
+        </div>
+
+        <div class="product">
+            <img src="images/handmade3.jpg" alt="منتج 3">
+            <h3>أدوات هاند ميد 3</h3>
+            <p>منتج يدوي بجودة عالية.</p>
+            <button class="btn" onclick="openOrderForm('أدوات هاند ميد 3')">اطلب الآن</button>
+        </div>
+       
+        <div class="product">
+            <img src="images/handmade4.jpg" alt="منتج 4">
+            <h3>أدوات هاند ميد 4</h3>
+            <p>منتج يدوي بجودة عالية.</p>
+            <button class="btn" onclick="openOrderForm('أدوات هاند ميد 4')">اطلب الآن</button>
+        </div>
+    </section>
+
+    <!-- أدوات منزلية -->
+    <section class="products" id="home">
+        <div class="product">
+            <img src="images/home1.jpg" alt="أدوات منزلية 1">
+            <h3>أدوات منزلية 1</h3>
+            <p>وصف المنتج الأول.</p>
+            <button class="btn" onclick="openOrderForm('أدوات منزلية 1')">اطلب الآن</button>
+        </div>
+
+        <div class="product">
+            <img src="images/home2.jpg" alt="أدوات منزلية 2">
+            <h3>أدوات منزلية 2</h3>
+            <p>وصف المنتج الثاني.</p>
+            <button class="btn" onclick="openOrderForm('أدوات منزلية 2')">اطلب الآن</button>
+        </div>
+
+        <!-- كرر الكود ده لكل منتج -->
+        <div class="product">
+            <img src="images/home3.jpg" alt="أدوات منزلية 3">
+            <h3>أدوات منزلية 3</h3>
+            <p>وصف المنتج الثالث.</p>
+            <button class="btn" onclick="openOrderForm('أدوات منزلية 3')">اطلب الآن</button>
+        </div>
+
+        <div class="product">
+            <img src="images/home4.jpg" alt="أدوات منزلية 4">
+            <h3>أدوات منزلية 4</h3>
+            <p>وصف المنتج الرابع.</p>
+            <button class="btn" onclick="openOrderForm('أدوات منزلية 4')">اطلب الآن</button>
+        </div>
+    </section>
+
+    <a href="https://wa.me/201017905181" class="whatsapp-float" target="_blank">تواصل واتساب</a>
+
+    <footer>
+        &copy; 2025 HomeStyle - جميع الحقوق محفوظة
+    </footer>
+
+    <!-- نموذج الطلب -->
+    <div id="orderForm" class="order-form">
+        <div class="form-content">
+            <span class="close-btn" onclick="closeOrderForm()">&times;</span>
+            <h2>اطلب الآن</h2>
+            <form id="orderFormData">
+                <label for="productName">اسم المنتج:</label>
+                <input type="text" id="productName" readonly>
+
+                <label for="name">اسمك:</label>
+                <input type="text" id="name" required>
+
+                <label for="phone">رقم الهاتف:</label>
+                <input type="tel" id="phone" required>
+
+                <label for="address">العنوان:</label>
+                <input type="text" id="address" required>
+
+                <button type="button" class="btn" onclick="sendOrder()">إرسال الطلب</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function showCategory(category) {
+            document.querySelectorAll('.products').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(category).style.display = 'grid';
+        }
+
+        window.onload = function() {
+            showCategory('handmade');
+        };
+
+        function openOrderForm(productName) {
+            document.getElementById('productName').value = productName;
+            document.getElementById('orderForm').style.display = 'flex';
+        }
+
+        function closeOrderForm() {
+            document.getElementById('orderForm').style.display = 'none';
+        }
+
+        function sendOrder() {
+            const productName = document.getElementById('productName').value;
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+
+            const message = `مرحبًا، أريد طلب ${productName}.\nالاسم: ${name}\nرقم الهاتف: ${phone}\nالعنوان: ${address}`;
+
+            const whatsappUrl = `https://wa.me/201017905181?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+
+</body>
+</html>
